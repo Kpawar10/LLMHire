@@ -1,0 +1,7 @@
+John Doe
+Skills: Python, SQL, Machine Learning
+Experience: 2 years Data Analyst
+
+Jane Smith
+Skills: Java, Spring Boot, Microservices
+Experience: 3 years Backend Developer
