@@ -1,26 +1,17 @@
-from src.parser import parse_resume
-from src.embeddings import get_embedding
-from src.scorer import compute_similarity
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
 
-# Sample Resume
-resume_text = """
-Skills: Python, SQL, Machine Learning
-Experience: 2 years Data Analyst
-"""
+data = pd.DataFrame({
+    "similarity": [0.9, 0.2, 0.75, 0.3],
+    "label": [1, 0, 1, 0]
+})
 
-# Job Description
-jd_text = "Looking for Python and Machine Learning engineer with SQL experience"
+X = data[["similarity"]]
+y = data["label"]
 
-parsed = parse_resume(resume_text)
+model = LogisticRegression()
+model.fit(X, y)
 
-resume_emb = get_embedding(parsed["skills"])
-jd_emb = get_embedding(jd_text)
+pred = model.predict([[score]])
 
-score = compute_similarity(resume_emb, jd_emb)
-
-print("Match Score:", score)
-from src.llm_module import generate_explanation
-
-explanation = generate_explanation(parsed["skills"], jd_text)
-
-print("Explanation:", explanation)
+print("Final Selection:", "Selected" if pred[0] == 1 else "Rejected")
