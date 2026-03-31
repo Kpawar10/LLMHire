@@ -19,3 +19,8 @@ jd_emb = get_embedding(jd_text)
 score = compute_similarity(resume_emb, jd_emb)
 
 print("Match Score:", score)
+from src.llm_module import generate_explanation
+
+explanation = generate_explanation(parsed["skills"], jd_text)
+
+print("Explanation:", explanation)
